@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -175,7 +175,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/24/Recommendation-System/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/24/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/mengwang.jpg">
@@ -188,7 +188,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/24/Recommendation-System/" class="post-title-link" itemprop="url">Recommendation System</a>
+          <a href="/2021/10/24/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">动态规划</a>
         </h2>
 
         <div class="post-meta-container">
@@ -200,7 +200,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-10-24 16:38:49 / 修改时间：19:03:46" itemprop="dateCreated datePublished" datetime="2021-10-24T16:38:49+08:00">2021-10-24</time>
+      <time title="创建时间：2021-10-24 20:59:39 / 修改时间：21:14:03" itemprop="dateCreated datePublished" datetime="2021-10-24T20:59:39+08:00">2021-10-24</time>
     </span>
 
   
@@ -213,13 +213,92 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="推荐系统基础"><a href="#推荐系统基础" class="headerlink" title="推荐系统基础"></a>推荐系统基础</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>个人认为动态规划算是比较难的一类题，这类题其实就是暴力求解。但是直接的暴力求解一般会导致问题超时，所以诞生了一些优化的方法。比如<strong>dp数组</strong>等。</p>
+<p>动态规划最难的是找到状态转移方程，这往往需要手动计算，很多时候并不是直接就能看出来的。</p>
+<h1 id="1-剑指-Offer-14-I-剪绳子"><a href="#1-剑指-Offer-14-I-剪绳子" class="headerlink" title="1.剑指 Offer 14- I. 剪绳子"></a>1.剑指 Offer 14- I. 剪绳子</h1><p>本题使用的动态规划典型的dp数组解法，dp数组第i位表示长度位i的绳子剪完之后可得到的最大乘积。<br>其思路是（郁郁雨的题解）：<br>这题用动态规划是比较好理解的</p>
+<ul>
+<li>我们想要求长度为n的绳子剪掉后的最大乘积，可以从前面比n小的绳子转移而来</li>
+<li>用一个dp数组记录从0到n长度的绳子剪掉后的最大乘积，也就是$dp[i]$表示长度为i的绳子剪成m段后的最大乘积，初始化$dp[2] = 1$</li>
+<li>我们先把绳子剪掉第一段（长度为j），如果只剪掉长度为1，对最后的乘积无任何增益，所以从长度为2开始剪</li>
+<li>剪了第一段后，剩下(i - j)长度可以剪也可以不剪。如果不剪的话长度乘积即为$j * (i - j)$；如果剪的话长度乘积即为$j * dp[i - j]$。取两者最大值$max(j * (i - j), j * dp[i - j])$</li>
+<li>第一段长度j可以取的区间为[2,i)，对所有j不同的情况取最大值，因此最终dp[i]的转移方程为<br>$dp[i] = max(dp[i], max(j * (i - j), j * dp[i - j]))$</li>
+<li>最后返回dp[n]即可</li>
+</ul>
+<p>作者：edelweisskoko<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/jian-zhi-offer-14-i-jian-sheng-zi-huan-s-xopj/">https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/jian-zhi-offer-14-i-jian-sheng-zi-huan-s-xopj/</a><br>来源：力扣（LeetCode）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cuttingRope</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        dp = [<span class="number">0</span>] * (n+<span class="number">1</span>)</span><br><span class="line">        dp[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, i):</span><br><span class="line">                dp[i] = <span class="built_in">max</span>(dp[i], j*(i-j), j*dp[i-j])   <span class="comment"># 难在这一个公式</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
 
 
-<h2 id="二级标题测试"><a href="#二级标题测试" class="headerlink" title="二级标题测试"></a>二级标题测试</h2><h3 id="三级标题测试"><a href="#三级标题测试" class="headerlink" title="三级标题测试"></a><font color='red'>三级标题测试</font></h3>
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/24/%E5%8F%8C%E6%8C%87%E9%92%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/mengwang.jpg">
+      <meta itemprop="name" content="Wang Wei">
+      <meta itemprop="description" content="强化学习，推荐系统，深度学习，leetcode。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/24/%E5%8F%8C%E6%8C%87%E9%92%88/" class="post-title-link" itemprop="url">双指针</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-10-24 20:50:30 / 修改时间：21:12:58" itemprop="dateCreated datePublished" datetime="2021-10-24T20:50:30+08:00">2021-10-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h1><p>双指针是比较简单的一类题型，其基本思想是同时设置两个指针，大多数情况下，还可细分为（只是按照我的习惯进行分类）：</p>
+<ul>
+<li>快慢指针：也就是两个指针一个先走，一个后走。或者同时开始走，但是一个走的快，一个走得慢。</li>
+<li>两个指针指向0，1：滑动窗口一般是这种情况</li>
+<li>两个指针分别指向起始和末尾：典型代表是二分法</li>
+</ul>
+<p>以下是双指针类型的题。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/10/24/Recommendation-System/#more" rel="contents">
+              <a class="btn" href="/2021/10/24/%E5%8F%8C%E6%8C%87%E9%92%88/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -278,6 +357,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+
 
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="theme-info">
