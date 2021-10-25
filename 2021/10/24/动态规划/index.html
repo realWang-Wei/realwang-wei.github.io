@@ -28,7 +28,7 @@
 <meta property="og:description" content="动态规划个人认为动态规划算是比较难的一类题，这类题其实就是暴力求解。但是直接的暴力求解一般会导致问题超时，所以诞生了一些优化的方法。比如dp数组等。 动态规划最难的是找到状态转移方程，这往往需要手动计算，很多时候并不是直接就能看出来的。 按照卜东波老师的课程，动态规划关键的几个点是：  多步决策过程：把问题分解成多步决策过程，比如下面的剪绳子。找出状态转移方程（bellman方程）。 以存代算：建">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-24T12:59:39.000Z">
-<meta property="article:modified_time" content="2021-10-25T04:25:28.305Z">
+<meta property="article:modified_time" content="2021-10-25T13:34:39.982Z">
 <meta property="article:author" content="Wang Wei">
 <meta property="article:tag" content="Leetcode">
 <meta name="twitter:card" content="summary">
@@ -211,7 +211,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-25 12:25:28" itemprop="dateModified" datetime="2021-10-25T12:25:28+08:00">2021-10-25</time>
+        <time title="修改时间：2021-10-25 21:34:39" itemprop="dateModified" datetime="2021-10-25T21:34:39+08:00">2021-10-25</time>
       </span>
 
   
@@ -238,7 +238,21 @@
 <li>多步决策过程：把问题分解成多步决策过程，比如下面的剪绳子。找出状态转移方程（bellman方程）。</li>
 <li>以存代算：建立一个set，减少冗余计算。</li>
 </ul>
-<span id="more"></span>
+<p>leetcode上的动态规划题大致分为这几类：</p>
+<ul>
+<li>基础题</li>
+<li>背包问题</li>
+<li>打家劫舍</li>
+<li>股票类问题</li>
+<li>子序列问题<span id="more"></span></li>
+</ul>
+<p>动态规划的几个要点：</p>
+<ul>
+<li>dp数组以及每个元素的含义：dp[i]或者dp[i][j]</li>
+<li>递推公式</li>
+<li>dp数组如何初始化</li>
+<li>遍历顺序</li>
+</ul>
 <h1 id="1-剑指-Offer-14-I-剪绳子"><a href="#1-剑指-Offer-14-I-剪绳子" class="headerlink" title="1.剑指 Offer 14- I. 剪绳子"></a>1.剑指 Offer 14- I. 剪绳子</h1><p>本题使用的动态规划典型的dp数组解法，dp数组第i位表示长度位i的绳子剪完之后可得到的最大乘积。<br>其思路是（郁郁雨的题解）：<br>这题用动态规划是比较好理解的</p>
 <ul>
 <li>我们想要求长度为n的绳子剪掉后的最大乘积，可以从前面比n小的绳子转移而来</li>
